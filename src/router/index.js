@@ -27,11 +27,13 @@ const routes = [
     path: '/posts/:id/edit',
     name: 'PostEdit',
     component: PostEditView,
+    props: (route) => ({ id: Number(route.params.id) }),
   },
   {
     path: '/posts/:id',
     name: 'PostDetail',
     component: PostDetailView,
+    props: (route) => ({ id: Number(route.params.id) }),
   },
   {
     path: '/posts/create',
