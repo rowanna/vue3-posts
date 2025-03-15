@@ -92,4 +92,3 @@ const remove = async () => {
 </script>
 
 <style lang="scss" scoped></style>
-<b></b>

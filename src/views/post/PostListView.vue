@@ -1,22 +1,14 @@
 <template>
   <h2>게시글 목록</h2>
   <hr class="my-4" />
-  <form @submit.prevent>
-    <div class="row g-3">
-      <div class="col">
-        <label for="title-filter">제목으로 검색하기</label>
-        <input id="title-filter" v-model="params.title_like" type="text" class="form-control" />
-      </div>
-      <div class="col-3">
-        <label for="select-limit"></label>
-        <select v-model="params._limit" id="select-limit" class="form-select">
-          <option value="3">3개씩 보기</option>
-          <option value="6">6개씩 보기</option>
-          <option value="9">9개씩 보기</option>
-        </select>
-      </div>
-    </div>
-  </form>
+  <PostFilter @submit.prevent v-model:title="params.title_like" v-model:limit="params._limit" />
+  <!-- <PostFilter
+    @submit.prevent
+    @update:title="(title) => (params.title_like = title)"
+    @update:limit="(limit) => (params._limit = limit)"
+    :title="params.title_like"
+    :limit="params._limit"
+  /> -->
   <hr class="my-4" />
   <div class="row g-3">
     <div v-for="post in posts" :key="post.id" class="col-4">
@@ -29,34 +21,17 @@
     </div>
   </div>
 
-  <nav class="mt-5" aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item" :class="{ disabled: !(1 < params._page) }">
-        <a class="page-link" href="#" aria-label="Previous" @click.prevent="() => --params._page">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-
-      <li
-        v-for="count in pageCount"
-        :key="count"
-        class="page-item"
-        :class="{ active: params._page === count }"
-      >
-        <a class="page-link" href="#" @click.prevent="() => (params._page = count)">{{ count }}</a>
-      </li>
-
-      <li class="page-item" :class="{ disabled: !(pageCount > params._page) }">
-        <a class="page-link" href="#" aria-label="Next" @click.preven t="() => ++params._page">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <AppPagination
+    @update:current-page="(currentPage) => (params._page = currentPage)"
+    :pageCount="pageCount"
+    :currentPage="params._page"
+  ></AppPagination>
 </template>
 
 <script setup>
 import { getPosts } from '@/api/posts'
+import AppPagination from '@/components/AppPagination.vue'
+import PostFilter from '@/components/posts/PostFilter.vue'
 import PostItem from '@/components/posts/PostItem.vue'
 import { computed, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
@@ -100,4 +75,3 @@ watchEffect(fetchPosts)
 </script>
 
 <style lang="scss" scoped></style>
-b
