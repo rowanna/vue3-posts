@@ -52,7 +52,7 @@ const goDetailPage = () => {
 
 const edit = async () => {
   try {
-    await editPost(props.id, { ...form.value, createdAt: Date.now() })
+    await editPost(props.id, { ...form.value, createdAt: String(Date.now()) })
     goDetailPage()
   } catch (err) {
     console.error(err)

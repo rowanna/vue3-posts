@@ -1,6 +1,18 @@
 {
   "posts": [
     {
+      "id": 1,
+      "title": "제목1",
+      "content": "내용1",
+      "createdAt": "2020-01-01"
+    },
+    {
+      "id": 2,
+      "title": "제목2",
+      "content": "내용2",
+      "createdAt": "2020-01-02"
+    },
+    {
       "id": 3,
       "title": "제목3",
       "content": "내용3",
@@ -19,22 +31,34 @@
       "createdAt": "2020-01-05"
     },
     {
-      "title": "안녕하세요",
-      "content": "안녕",
-      "createdAt": 1742028521417,
-      "id": 6
+      "id": 6,
+      "title": "제목6",
+      "content": "내용6",
+      "createdAt": "2020-01-06"
     },
     {
-      "title": "안녕하세요",
-      "content": "안녕ㅎㅎㅎㅎㅎㅎ",
-      "createdAt": 1742030077725,
-      "id": 7
+      "id": 7,
+      "title": "제목7",
+      "content": "내용7",
+      "createdAt": "2020-01-07"
     },
     {
-      "title": "ㅇㅇㅇ",
-      "content": "ㅇㅇㅇ",
-      "createdAt": 1742031849127,
-      "id": 8
+      "id": 8,
+      "title": "제목8",
+      "content": "내용8",
+      "createdAt": "2020-01-08"
+    },
+    {
+      "id": 9,
+      "title": "제목9",
+      "content": "내용9",
+      "createdAt": "2020-01-09"
+    },
+    {
+      "title": "안녕안녕",
+      "content": "안녕하세요",
+      "createdAt": "1742033042382",
+      "id": 10
     }
   ]
 }

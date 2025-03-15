@@ -38,7 +38,7 @@ const savePost = async () => {
   try {
     await createPost({
       ...form.value,
-      createdAt: Date.now(),
+      createdAt: String(Date.now()),
     })
     goListPage()
   } catch (error) {
