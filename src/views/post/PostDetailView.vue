@@ -48,7 +48,6 @@ const goEditPage = () => {
     },
   })
 }
-console.log(getPostById(postId), '===')
 postData.value = { ...fetchPostData }
 </script>
 
