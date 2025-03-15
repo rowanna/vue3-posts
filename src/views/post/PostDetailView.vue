@@ -1,7 +1,7 @@
 <template>
-  <h2>게시글 제목</h2>
-  <p>내용</p>
-  <p class="text-muted">2020-01-01</p>
+  <h2>{{ postData.title }}</h2>
+  <p>{{ postData.content }}</p>
+  <p class="text-muted">{{ postData.createdAt }}</p>
   <hr class="my-4" />
   <div class="row g-2">
     <div class="col-auto">
@@ -24,10 +24,15 @@
 </template>
 
 <script setup>
+import { getPostById } from '@/api/posts'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
+const postData = ref({})
 const router = useRouter()
 const route = useRoute()
+const postId = route.params.id
+const fetchPostData = getPostById(postId)
 
 const goListPage = () => {
   router.push({
@@ -39,10 +44,12 @@ const goEditPage = () => {
   router.push({
     name: 'PostEdit',
     params: {
-      id: route.params.id,
+      id: postId,
     },
   })
 }
+console.log(getPostById(postId), '===')
+postData.value = { ...fetchPostData }
 </script>
 
 <style lang="scss" scoped></style>
