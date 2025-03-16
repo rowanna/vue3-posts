@@ -60,7 +60,7 @@ const vAlert = (message, type, callback) => {
     alertMessage.value = ''
     alertType.value = ''
     callback && callback()
-  }, 2000)
+  }, 5000)
 }
 const edit = async () => {
   try {
