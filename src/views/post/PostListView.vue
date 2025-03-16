@@ -17,6 +17,7 @@
         :title="post.title"
         :content="post.content"
         :created-at="post.createdAt"
+        @click-open-modal-btn="openModal(post)"
       ></PostItem>
     </div>
   </div>
@@ -26,6 +27,15 @@
     :pageCount="pageCount"
     :currentPage="params._page"
   ></AppPagination>
+  <Teleport to="#modal">
+    <PostModal
+      v-model:isShowModal="isShowModal"
+      :isShowModal="isShowModal"
+      :title="modalTitle"
+      :content="modalContent"
+      :created-at="modalCreatedAt"
+    ></PostModal>
+  </Teleport>
 </template>
 
 <script setup>
@@ -33,6 +43,7 @@ import { getPosts } from '@/api/posts'
 import AppPagination from '@/components/AppPagination.vue'
 import PostFilter from '@/components/posts/PostFilter.vue'
 import PostItem from '@/components/posts/PostItem.vue'
+import PostModal from '@/components/posts/PostModal.vue'
 import { computed, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -70,6 +81,16 @@ const goPage = (id) => {
   })
 }
 
+const isShowModal = ref(false)
+const modalTitle = ref('')
+const modalContent = ref('')
+const modalCreatedAt = ref('')
+const openModal = ({ title, content, createdAt }) => {
+  isShowModal.value = true
+  modalTitle.value = title
+  modalContent.value = content
+  modalCreatedAt.value = createdAt
+}
 // watch와 다르게 처음 한번 실행됨.
 watchEffect(fetchPosts)
 </script>
