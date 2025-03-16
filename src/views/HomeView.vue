@@ -3,6 +3,9 @@
   {{ $route.path }}
   <button @click="$router.push('/about')">about으로 이동</button>
   <h2>{{ $person.name }}</h2>
+  {{ position }}
+  {{ x }}
+  {{ y }}
 </template>
 
 <script>
@@ -14,10 +17,21 @@ export default {
 }
 </script>
 <script setup>
-import { inject } from 'vue'
+import { inject, reactive, toRef, toRefs } from 'vue'
 
 const person = inject('person')
-console.log(person.name)
+
+// console.log(person.name)
+
+const position = reactive({
+  x: 100,
+  y: 1000,
+})
+
+// const x = toRef(position, 'x')
+// const y = toRef(position, 'y')
+
+const { x, y } = toRefs(position)
 </script>
 
 <style lang="scss" scoped></style>
