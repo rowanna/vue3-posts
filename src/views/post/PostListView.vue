@@ -49,10 +49,10 @@ import { getPosts } from '@/api/posts'
 import PostFilter from '@/components/posts/PostFilter.vue'
 import PostItem from '@/components/posts/PostItem.vue'
 import PostModal from '@/components/posts/PostModal.vue'
-import { computed, ref, watchEffect } from 'vue'
+import { useAxios } from '@/hooks/useAxios'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-const posts = ref([])
 const router = useRouter()
 const params = ref({
   _sort: 'createdAt',
@@ -61,25 +61,11 @@ const params = ref({
   _limit: 3,
   title_like: '',
 })
-const isError = ref(null)
-const isLoading = ref(false)
-// pagination
-const totalCount = ref(0)
-const pageCount = computed(() => Math.ceil(totalCount.value / params.value._limit))
+const { data: posts, isError, isLoading, response } = useAxios('/posts', { method: 'get', params })
 
-const fetchPosts = async () => {
-  try {
-    isLoading.value = true
-    const { data, headers } = await getPosts(params.value)
-    posts.value = data
-    router.push({ name: 'PostList' })
-    totalCount.value = headers['x-total-count']
-  } catch (err) {
-    isError.value = err
-  } finally {
-    isLoading.value = false
-  }
-}
+// pagination
+const totalCount = computed(() => response.value.headers['x-total-count'])
+const pageCount = computed(() => Math.ceil(totalCount.value / params.value._limit))
 
 const goPage = (id) => {
   router.push({
@@ -100,8 +86,6 @@ const openModal = ({ title, content, createdAt }) => {
   modalContent.value = content
   modalCreatedAt.value = createdAt
 }
-// watch와 다르게 처음 한번 실행됨.
-watchEffect(fetchPosts)
 </script>
 
 <style lang="scss" scoped></style>

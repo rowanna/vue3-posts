@@ -1,136 +1,16 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "제목11111111",
-      "content": "내용1",
-      "createdAt": "1742103399627"
+      "title": "111",
+      "content": "1111",
+      "createdAt": "1742108199105",
+      "id": 1
     },
     {
-      "id": 2,
-      "title": "제목2",
-      "content": "내용2",
-      "createdAt": "2020-01-02"
-    },
-    {
-      "id": 3,
-      "title": "제목3",
-      "content": "내용3",
-      "createdAt": "2020-01-03"
-    },
-    {
-      "id": 4,
-      "title": "제목4sss",
-      "content": "내용4dddddd",
-      "createdAt": "1742102597201"
-    },
-    {
-      "id": 5,
-      "title": "제목5",
-      "content": "내용5",
-      "createdAt": "2020-01-05"
-    },
-    {
-      "id": 6,
-      "title": "제목6",
-      "content": "내용6",
-      "createdAt": "1742098652944"
-    },
-    {
-      "id": 7,
-      "title": "제목7777777",
-      "content": "내용7",
-      "createdAt": "1742099478954"
-    },
-    {
-      "title": "제목8",
-      "content": "dddd내용8",
-      "createdAt": "1742088851600",
-      "id": 8
-    },
-    {
-      "id": 9,
-      "title": "제목9",
-      "content": "내용9",
-      "createdAt": "2020-01-09"
-    },
-    {
-      "title": "안녕안녕",
-      "content": "안녕하세요",
-      "createdAt": "1742033042382",
-      "id": 10
-    },
-    {
-      "title": null,
-      "content": null,
-      "createdAt": "1742044583677",
-      "id": 11
-    },
-    {
-      "title": "dfsf",
-      "content": "sfsf",
-      "createdAt": "1742044633425",
-      "id": 12
-    },
-    {
-      "title": "ddfsfdf",
-      "content": "sfsfsf",
-      "createdAt": "1742044968432",
-      "id": 13
-    },
-    {
-      "title": null,
-      "content": null,
-      "createdAt": "1742044990236",
-      "id": 14
-    },
-    {
-      "title": "222",
-      "content": "222",
-      "createdAt": "1742045011199",
-      "id": 15
-    },
-    {
-      "title": "5555666",
-      "content": "5555666",
-      "createdAt": "1742045617298",
-      "id": 16
-    },
-    {
-      "title": "dfsfd",
-      "content": "sdfdf",
-      "createdAt": "1742098936441",
-      "id": 17
-    },
-    {
-      "title": "dfdf",
-      "content": "ss11111111",
-      "createdAt": "1742099223777",
-      "id": 18
-    },
-    {
-      "title": "11111111",
-      "content": "111111111",
-      "createdAt": "1742099249655",
-      "id": 19
-    },
-    {
-      "title": "dff",
-      "content": "fffffff",
-      "createdAt": "1742099431684",
-      "id": 20
-    },
-    {
-      "title": null,
-      "content": null,
-      "createdAt": "1742103060821",
-      "id": 21
-    },
-    {
-      "title": "0000000000",
-      "content": "0000000000",
-      "createdAt": "1742103090576",
-      "id": 22
+      "title": "11222",
+      "content": "22222",
+      "createdAt": 1742108303130,
+      "id": 2
     }
   ]
 }

@@ -28,7 +28,7 @@ const props = defineProps({
     required: true,
   },
   createdAt: {
-    type: String,
+    type: [String, Number],
     required: true,
   },
 })

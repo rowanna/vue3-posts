@@ -28,30 +28,17 @@
 </template>
 
 <script setup>
-import { deletePost, getPostById } from '@/api/posts'
-import { ref } from 'vue'
+import { deletePost } from '@/api/posts'
+import { useAxios } from '@/hooks/useAxios'
 import { useRouter } from 'vue-router'
-const isError = ref(null)
-const isLoading = ref(false)
+
 const props = defineProps({
   id: Number,
 })
-const postData = ref({})
+
 const router = useRouter()
 
-const fetchPost = async () => {
-  try {
-    isLoading.value = true
-
-    const { data } = await getPostById(props.id)
-    postData.value = data
-  } catch (err) {
-    isError.value = err
-  } finally {
-    isLoading.value = false
-  }
-}
-fetchPost()
+const { data: postData, isError, isLoading } = useAxios(`/posts/${props.id}`, { method: 'get' })
 
 const goPrevPost = async () => {
   try {

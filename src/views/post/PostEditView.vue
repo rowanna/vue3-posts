@@ -31,10 +31,8 @@ import { editPost, getPostById } from '@/api/posts'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import PostForm from '@/components/posts/PostForm.vue'
-import { useAlert } from '@/composables/usealert'
-
-const isError = ref(null)
-const isLoading = ref(false)
+import { useAlert } from '@/composables/useAlert'
+import { useAxios } from '@/hooks/useAxios'
 
 const editError = ref(null)
 const editLoading = ref(false)
@@ -43,26 +41,9 @@ const router = useRouter()
 const props = defineProps({
   id: Number,
 })
-const form = ref({
-  title: null,
-  content: null,
-})
 
-const fetchPost = async () => {
-  try {
-    isLoading.value = true
-    const { data } = await getPostById(props.id)
-    form.value.title = data.title
-    form.value.content = data.content
-  } catch (err) {
-    console.error(err)
-    vAlert('API 호출이 실패되었습니다. ', 'danger')
-    isError.value = err
-  } finally {
-    isLoading.value = false
-  }
-}
-fetchPost()
+const { data: form, isError, isLoading } = useAxios(`/posts/${props.id}`, { method: 'get' })
+
 const goDetailPage = () => {
   router.push({
     name: 'PostDetail',
@@ -75,7 +56,7 @@ const goDetailPage = () => {
 const edit = async () => {
   try {
     editLoading.value = true
-    await editPost(props.id, { ...form.value, createdAt: String(Date.now()) })
+    await editPost(props.id, { ...form.value, createdAt: Date.now() })
     vSuccess('수정이 완료되었습니다!')
     goDetailPage()
   } catch (err) {
