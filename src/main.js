@@ -7,7 +7,7 @@ import router from './router'
 // import funcPlugins from './plugins/func'
 // import objPlugins from './plugins/obj'
 import person from './plugins/person'
-import globalComponents from './components/app/global-components'
+// import globalComponents from './components/app/global-components'
 
 const app = createApp(App)
 app.use(router)
@@ -16,5 +16,5 @@ app.mount('#app')
 app.use(funcPlugins)
 app.use(objPlugins)
 app.use(person)
-app.use(globalComponents)
+// app.use(globalComponents)
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
