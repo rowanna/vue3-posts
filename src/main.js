@@ -10,15 +10,16 @@ import person from './plugins/person'
 // import globalComponents from './components/app/global-components'
 import globalDirectives from './plugins/global-directives'
 import day from './plugins/day'
-
+import { createPinia } from 'pinia'
 const app = createApp(App)
 app.use(router)
-app.mount('#app')
 
 // app.use(funcPlugins)
 // app.use(objPlugins)
 app.use(person)
 app.use(globalDirectives)
 app.use(day)
+app.use(createPinia())
+app.mount('#app')
 // app.use(globalComponents)
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
