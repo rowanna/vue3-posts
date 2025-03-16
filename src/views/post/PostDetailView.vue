@@ -1,7 +1,7 @@
 <template>
   <h2>{{ postData.title }}</h2>
   <p>{{ postData.content }}</p>
-  <p class="text-muted">{{ postData.createdAt }}</p>
+  <p class="text-muted">{{ $dayjs(postData.createdAt).format('YYYY. MM .DD HH:mm:ss') }}</p>
   <hr class="my-4" />
   <div class="row g-2">
     <div class="col-auto">

@@ -9,6 +9,7 @@ import router from './router'
 import person from './plugins/person'
 // import globalComponents from './components/app/global-components'
 import globalDirectives from './plugins/global-directives'
+import day from './plugins/day'
 
 const app = createApp(App)
 app.use(router)
@@ -18,5 +19,6 @@ app.mount('#app')
 // app.use(objPlugins)
 app.use(person)
 app.use(globalDirectives)
+app.use(day)
 // app.use(globalComponents)
-// import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'

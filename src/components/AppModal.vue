@@ -2,12 +2,7 @@
   <div v-if="show">
     <div class="modal-backdrop fade show"></div>
     <!-- Modal -->
-    <div
-      class="modal fade show d-block"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade show d-block" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
