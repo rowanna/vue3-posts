@@ -8,6 +8,8 @@
       <button class="btn btn-primary">수정</button>
     </template>
   </PostForm>
+
+  <AppAlert :show="showAlert" :message="alertMessage" :type="alertType"></AppAlert>
 </template>
 
 <script setup>
@@ -15,6 +17,7 @@ import { editPost, getPostById } from '@/api/posts'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import PostForm from '@/components/posts/PostForm.vue'
+import AppAlert from '@/components/AppAlert.vue'
 
 const router = useRouter()
 const props = defineProps({
@@ -24,6 +27,9 @@ const form = ref({
   title: null,
   content: null,
 })
+const showAlert = ref(false)
+const alertMessage = ref('')
+const alertType = ref('')
 
 const fetchPost = async () => {
   try {
@@ -32,6 +38,7 @@ const fetchPost = async () => {
     form.value.content = data.content
   } catch (err) {
     console.error(err)
+    vAlert('API 호출이 실패되었습니다. ', 'danger')
   }
 }
 fetchPost()
@@ -44,10 +51,21 @@ const goDetailPage = () => {
   })
 }
 
+const vAlert = (message, type, callback) => {
+  showAlert.value = true
+  alertMessage.value = message
+  alertType.value = type
+  setTimeout(() => {
+    showAlert.value = false
+    alertMessage.value = ''
+    alertType.value = ''
+    callback && callback()
+  }, 2000)
+}
 const edit = async () => {
   try {
     await editPost(props.id, { ...form.value, createdAt: String(Date.now()) })
-    goDetailPage()
+    vAlert('수정이 완료되었습니다!', 'success', goDetailPage)
   } catch (err) {
     console.error(err)
   }

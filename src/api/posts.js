@@ -12,7 +12,7 @@ export function createPost(data) {
   return postsAxios.post('/', data)
 }
 export function editPost(id, data) {
-  return postsAxios.put(`/${id}`, data)
+  return postsAxios.patch(`/${id}`, data)
 }
 export function deletePost(id) {
   return postsAxios.delete(`/${id}`)
