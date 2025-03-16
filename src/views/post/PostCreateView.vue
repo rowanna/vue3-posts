@@ -16,7 +16,6 @@
       </button>
     </template>
   </PostForm>
-  <AppAlert :show="showAlert" :message="alertMessage" :type="alertType"></AppAlert>
 </template>
 
 <script setup>

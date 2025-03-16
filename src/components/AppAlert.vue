@@ -1,30 +1,22 @@
 <template>
-  <Transition name="slide">
-    <div v-if="show" class="app-alert alert" :class="styleComputed" role="alert">
-      {{ message }}
-    </div>
-  </Transition>
+  <!-- <Transition name="slide"> -->
+  <div v-if="showAlert" class="app-alert alert alert-success" role="alert">
+    {{ message }}
+  </div>
+  <!-- </Transition> -->
 </template>
 
 <script setup>
-import { computed } from 'vue'
-const props = defineProps({
-  show: {
-    type: Boolean,
-    default: false,
-  },
-  message: {
-    type: String,
-    required: true,
-  },
-  type: {
-    type: String,
-    required: true,
-  },
-})
+import { useAlert } from '@/composables/useAlert'
+import { computed, ref } from 'vue'
+
+const { showAlert } = useAlert()
+
+const message = ref('dddddd')
+const type = ref('success')
 
 const styleComputed = computed(() => {
-  return `alert-${props.type}`
+  return `alert-${type}`
 })
 </script>
 
