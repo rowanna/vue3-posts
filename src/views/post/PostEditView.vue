@@ -17,7 +17,9 @@ import { editPost, getPostById } from '@/api/posts'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import PostForm from '@/components/posts/PostForm.vue'
+import { useAlert } from '@/composables/usealert'
 
+const { showAlert, alertMessage, alertType, vSuccess } = useAlert()
 const router = useRouter()
 const props = defineProps({
   id: Number,
@@ -26,9 +28,6 @@ const form = ref({
   title: null,
   content: null,
 })
-const showAlert = ref(false)
-const alertMessage = ref('')
-const alertType = ref('')
 
 const fetchPost = async () => {
   try {
@@ -50,21 +49,11 @@ const goDetailPage = () => {
   })
 }
 
-const vAlert = (message, type, callback) => {
-  showAlert.value = true
-  alertMessage.value = message
-  alertType.value = type
-  setTimeout(() => {
-    showAlert.value = false
-    alertMessage.value = ''
-    alertType.value = ''
-    callback && callback()
-  }, 5000)
-}
 const edit = async () => {
   try {
     await editPost(props.id, { ...form.value, createdAt: String(Date.now()) })
-    vAlert('수정이 완료되었습니다!', 'success', goDetailPage)
+    vSuccess('수정이 완료되었습니다!')
+    goDetailPage()
   } catch (err) {
     console.error(err)
   }

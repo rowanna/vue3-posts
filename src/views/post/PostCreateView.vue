@@ -8,6 +8,7 @@
       <button class="btn btn-primary">저장</button>
     </template>
   </PostForm>
+  <AppAlert :show="showAlert" :message="alertMessage" :type="alertType"></AppAlert>
 </template>
 
 <script setup>
@@ -15,7 +16,9 @@ import { createPost } from '@/api/posts'
 import PostForm from '@/components/posts/PostForm.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAlert } from '@/composables/usealert'
 
+const { showAlert, alertMessage, alertType, vSuccess } = useAlert()
 const form = ref({
   title: null,
   content: null,
@@ -33,6 +36,7 @@ const savePost = async () => {
       ...form.value,
       createdAt: String(Date.now()),
     })
+    vSuccess('등록이 완료되었습니다.')
     goListPage()
   } catch (error) {
     console.error(error)
