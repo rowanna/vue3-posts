@@ -9,8 +9,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppAlert: typeof import('./src/components/AppAlert.vue')['default']
+    AppError: typeof import('./src/components/AppError.vue')['default']
+    AppLoading: typeof import('./src/components/AppLoading.vue')['default']
     AppModal: typeof import('./src/components/AppModal.vue')['default']
     AppPagination: typeof import('./src/components/AppPagination.vue')['default']
+    copy: typeof import('./src/components/AppError copy.vue')['default']
     PostFilter: typeof import('./src/components/posts/PostFilter.vue')['default']
     PostForm: typeof import('./src/components/posts/PostForm.vue')['default']
     PostItem: typeof import('./src/components/posts/PostItem.vue')['default']

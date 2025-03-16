@@ -10,23 +10,29 @@
     :limit="params._limit"
   /> -->
   <hr class="my-4" />
-  <div class="row g-3">
-    <div v-for="post in posts" :key="post.id" class="col-4">
-      <PostItem
-        @click="goPage(post.id)"
-        :title="post.title"
-        :content="post.content"
-        :created-at="post.createdAt"
-        @click-open-modal-btn="openModal(post)"
-      ></PostItem>
-    </div>
-  </div>
 
-  <AppPagination
-    @update:current-page="(currentPage) => (params._page = currentPage)"
-    :pageCount="pageCount"
-    :currentPage="params._page"
-  ></AppPagination>
+  <AppLoading v-if="isLoading" />
+  <AppError v-else-if="isError" :message="isError.message" />
+  <template v-else>
+    <div class="row g-3">
+      <div v-for="post in posts" :key="post.id" class="col-4">
+        <PostItem
+          @click="goPage(post.id)"
+          :title="post.title"
+          :content="post.content"
+          :created-at="post.createdAt"
+          @click-open-modal-btn="openModal(post)"
+        ></PostItem>
+      </div>
+    </div>
+
+    <AppPagination
+      @update:current-page="(currentPage) => (params._page = currentPage)"
+      :pageCount="pageCount"
+      :currentPage="params._page"
+    />
+  </template>
+
   <Teleport to="#modal">
     <PostModal
       v-model:isShowModal="isShowModal"
@@ -55,19 +61,23 @@ const params = ref({
   _limit: 3,
   title_like: '',
 })
-
+const isError = ref(null)
+const isLoading = ref(false)
 // pagination
 const totalCount = ref(0)
 const pageCount = computed(() => Math.ceil(totalCount.value / params.value._limit))
 
 const fetchPosts = async () => {
   try {
+    isLoading.value = true
     const { data, headers } = await getPosts(params.value)
     posts.value = data
     router.push({ name: 'PostList' })
     totalCount.value = headers['x-total-count']
   } catch (err) {
-    console.error(err)
+    isError.value = err
+  } finally {
+    isLoading.value = false
   }
 }
 
