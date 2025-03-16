@@ -17,7 +17,6 @@ import { editPost, getPostById } from '@/api/posts'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import PostForm from '@/components/posts/PostForm.vue'
-import AppAlert from '@/components/AppAlert.vue'
 
 const router = useRouter()
 const props = defineProps({

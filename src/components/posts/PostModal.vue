@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-import AppModal from '@/components/AppModal.vue'
 import { computed } from 'vue'
 
 // 외부에서 받은 props인 isShowModal는 자식컴포넌트에서는 읽기전용이라 값을 수정할 수 없음.

@@ -40,7 +40,6 @@
 
 <script setup>
 import { getPosts } from '@/api/posts'
-import AppPagination from '@/components/AppPagination.vue'
 import PostFilter from '@/components/posts/PostFilter.vue'
 import PostItem from '@/components/posts/PostItem.vue'
 import PostModal from '@/components/posts/PostModal.vue'
