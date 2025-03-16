@@ -25,6 +25,11 @@
             <li class="nav-item">
               <RouterLink class="nav-link" active-class="active" to="/posts">게시글</RouterLink>
             </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" active-class="active" to="/mypage"
+                >마이페이지</RouterLink
+              >
+            </li>
           </ul>
           <div class="d-flex">
             <button @click="goPage" class="btn btn-outline-light" type="submit">글쓰기</button>

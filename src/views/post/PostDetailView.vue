@@ -30,7 +30,7 @@
 <script setup>
 import { deletePost } from '@/api/posts'
 import { useAxios } from '@/hooks/useAxios'
-import { useRouter } from 'vue-router'
+import { onBeforeRouteLeave, onBeforeRouteUpdate, useRouter } from 'vue-router'
 
 const props = defineProps({
   id: Number,
@@ -87,6 +87,22 @@ const remove = async () => {
   } finally {
     isLoading.value = false
   }
+}
+
+onBeforeRouteUpdate(() => {
+  console.log('onBeforeRouteUpdate')
+})
+
+onBeforeRouteLeave(() => {
+  console.log('onBeforeRouteLeave')
+})
+</script>
+
+<script>
+export default {
+  beforeRouteEnter() {
+    console.log('beforeRouteEnter')
+  },
 }
 </script>
 

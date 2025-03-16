@@ -6,6 +6,7 @@ import PostEditView from '@/views/post/PostEditView.vue'
 import PostDetailView from '@/views/post/PostDetailView.vue'
 import PostCreateView from '@/views/post/PostCreateView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import MyPageView from '@/views/MyPageView.vue'
 // Set Route
 const routes = [
   {
@@ -39,6 +40,18 @@ const routes = [
     path: '/posts/create',
     name: 'PostCreate',
     component: PostCreateView,
+    beforeEnter: [removeQueryString],
+  },
+  {
+    path: '/mypage',
+    name: 'mypage',
+    component: MyPageView,
+    beforeEnter: (to, from) => {
+      // return '/posts'
+      if (Object.keys(to.query).length > 0) {
+        return { path: to.path, query: {} }
+      }
+    },
   },
   {
     path: '/:pathMatch(.*)*',
@@ -47,10 +60,21 @@ const routes = [
   },
 ]
 
+function removeQueryString(to) {
+  if (Object.keys(to.query).length > 0) {
+    return { path: to.path, query: {} }
+  }
+}
+
 // Set Router
 const router = createRouter({
   history: createWebHistory('/'),
   routes,
 })
 
+// router.beforeEach((to, from) => {
+//   if (to.name === 'mypage') {
+//     return '/posts'
+//   }
+// })
 export default router
